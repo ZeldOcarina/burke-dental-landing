@@ -1,5 +1,5 @@
 // Declare a variable business_name
-def business_name = "{{ business-name }}"
+def business_name = "burke-dental-landing"
 
 pipeline {
     agent any

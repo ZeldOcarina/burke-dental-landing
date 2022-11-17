@@ -2,7 +2,7 @@ const EXCLUDED_PATHS = []
 
 module.exports = {
     siteMetadata: {
-        siteUrl: "SITE_URL",
+        siteUrl: "https://burke-dental-landing.monarchy.io",
     },
     "plugins": [
         {
