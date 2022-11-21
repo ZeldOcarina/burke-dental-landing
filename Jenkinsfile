@@ -1,5 +1,5 @@
 // Declare a variable business_name
-def business_name = "burke-dental-landing"
+def business_name = "{{ business-name }}"
 
 pipeline {
     agent any
@@ -63,8 +63,12 @@ pipeline {
                 script {
                     sh 'export NPM_TOKEN=${NPM_TOKEN}'
                     sh "cp /var/lib/jenkins/workspace/secrets/${business_name}/.env.production ."
+                    sh "sudo chmod 776 .env.production"
+                    sh "sudo chown jenkins:jenkins .env.production"
                     dir("backend") {
                         sh "sudo cp /var/lib/jenkins/workspace/secrets/${business_name}/.env ."
+                        sh "sudo chmod 776 .env"
+                        sh "sudo chown jenkins:jenkins .env"
                     }
                     dir("${env.WORKSPACE}") {
                         if (params.CLEAN_DEPLOYMENT == true) {
