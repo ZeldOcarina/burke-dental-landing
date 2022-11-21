@@ -54,8 +54,8 @@ class GatsbyPrebuilder {
                 promises.push(this.donwloadAndMoveFavicons());
                 promises.push(this.fetchAirTableStaticFiles());
                 // Check if we are in a ci environment
+                promises.push(this.changeEnvData());
                 if (!process.env.CI) {
-                    promises.push(this.changeEnvData());
                     promises.push(this.scpEnvFiles());
                 }
             }
