@@ -5,6 +5,7 @@ pipeline {
     agent any
     parameters{
         booleanParam(name: 'CLEAN_DEPLOYMENT', defaultValue: false, description: 'Do you want to run a clean deployment?')
+        booleanParam(name: 'UPGRADE_THEME', defaultValue: false, description: 'Do you want to upgrade the theme?')
     }
     stages {
         stage("Check Environment"){
@@ -45,7 +46,9 @@ pipeline {
                     if(params.CLEAN_DEPLOYMENT != true) {
                         // Upgrade all packages
                         sh "yarn install"
-                        sh "yarn upgrade"
+                        if (params.UPGRADE_THEME == true) {
+                            sh "yarn upgrade"
+                        }
                     } else {
                         sh "yarn install"
                     }
